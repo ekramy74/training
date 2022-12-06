@@ -6,6 +6,7 @@ import {Link, useNavigate} from "react-router-dom";
 import * as ImIcons from "react-icons/im";
 import * as FiIcons from "react-icons/fi";
 import {AuthActionTypes} from "../../utils/ActionTypes/ActionTypes";
+import UsePost from "../../Shared/API_Helper/Post";
 
 const Register = () => {
     const [state, dispatch] = useReducer(AuthReducer, InitialState)
@@ -36,24 +37,27 @@ const Register = () => {
                 type: AuthActionTypes.LOGIN,
             }
         )
-        /* UsePost('User/Create', '', {
-                 username: values?.username,
-                 email: values?.email,
-                 password: values?.password
-             },
-             (result) => {
-                 message.success('Register successful');
-                 dispatch(
-                     {
-                         type: AuthActionTypes.REGISTER_SUCCESS,
-                     }
-                 )
-                 setTimeout(() => navigate('/login'), 2000)
-             }, (error) => {
-                 message.error('Register failed');
-                 dispatch({type: AuthActionTypes.REGISTER_ERROR})
-             }
-         );*/
+        UsePost('register', {
+                username: values?.username,
+                email: values?.email,
+                password: values?.password
+            },
+            (result) => {
+                message.success('Register successful');
+                dispatch(
+                    {
+                        type: AuthActionTypes.REGISTER_SUCCESS,
+                        payload: {
+                            token: result?.token,
+                        }
+                    }
+                )
+                setTimeout(() => navigate('/'), 2000)
+            }, (error) => {
+                message.error(error);
+                dispatch({type: AuthActionTypes.REGISTER_ERROR})
+            }
+        );
 
     };
     return (

@@ -1,0 +1,253 @@
+.bag {
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bag_items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 0 20px;
+
+}
+
+.bag_items_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 0 20px;
+}
+
+.bag_items_header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.bag_item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.bag_item_image {
+    height: 4rem;
+}
+
+.bag_item_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.bag_item h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.quantity_btns {
+    width: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid #ddd;
+}
+
+.increase, .decrease {
+    width: 30%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #777676;
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.increase:hover, .decrease:hover {
+    background-color: #f6f6f6;
+}
+
+.qty {
+    width: 40%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #777676;
+}
+
+.bag_btns {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.clear_btn, .continue_btn {
+    width: 20%;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #f6f6f6;
+    color: #777676;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.clear_btn:hover, .continue_btn:hover {
+    background-color: #A2BAC4;
+    color: #fff;
+}
+
+.total_card {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border-radius: 8px;
+}
+
+.totals {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.sub_totals, .tax, .total {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 5rem;
+    padding: 0 20px;
+}
+
+.sub_totals h3, .tax h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #777676;
+}
+
+.total h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #0A66C2;
+}
+
+.checkout_btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    background-color: #1c8abd;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.checkout_btn:hover {
+    background-color: #0A66C2;
+}
+
+@media screen and (max-width: 768px) {
+    .bag {
+        padding: 0;
+        margin: 0;
+    }
+
+    .bag_items {
+        width: 90%;
+    }
+
+    .bag_items_header {
+        height: 4rem;
+    }
+
+    .bag_item {
+        height: 4rem;
+    }
+
+    .bag_item_image {
+        height: 3rem;
+    }
+
+    .quantity_btns {
+        width: 20%;
+    }
+
+    .qty {
+        width: 30%;
+    }
+
+    .bag_btns {
+        width: 90%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .clear_btn, .continue_btn {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .total_card {
+        width: 80%;
+        margin: 20px 0;
+    }
+
+    .totals {
+        width: 100%;
+    }
+
+    .sub_totals, .tax, .total {
+        width: 100%;
+    }
+}

@@ -8,7 +8,6 @@ export const InitialState = {
 export const AuthReducer = (state = InitialState, action) => {
 
     function loginSuccess() {
-        console.log(action.payload?.token);
         localStorage.setItem('token', action.payload.token);
     }
 
@@ -33,6 +32,7 @@ export const AuthReducer = (state = InitialState, action) => {
                 isAuthenticated: false,
             }
         case AuthActionTypes.REGISTER_SUCCESS:
+            loginSuccess();
             return {
                 ...state,
                 isLoading: false,
@@ -53,7 +53,6 @@ export const AuthReducer = (state = InitialState, action) => {
                 isAuthenticated: false,
             }
         case AuthActionTypes.REFRESH_TOKEN:
-            console.log(action.payload);
             localStorage.setItem('token', action.payload);
             return {
                 ...state,

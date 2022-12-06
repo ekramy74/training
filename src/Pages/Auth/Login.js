@@ -7,6 +7,7 @@ import {useContext} from "react";
 import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import {AuthContext} from "../../App";
 import {AuthActionTypes} from "../../utils/ActionTypes/ActionTypes";
+import UsePost from "../../Shared/API_Helper/Post";
 
 
 const Login = () => {
@@ -19,11 +20,7 @@ const Login = () => {
                 type: AuthActionTypes.LOGIN,
             }
         )
-        console.log({
-            email: values?.email,
-            password: values?.password
-        })
-        /*UsePost('User/sign_in', '', {
+        UsePost('login', {
                 email: values?.email,
                 password: values?.password
             },
@@ -40,12 +37,10 @@ const Login = () => {
                 navigate('/')
 
             }, (error) => {
-                message.error('Login failed');
+                message.error(error);
                 authDispatch({type: AuthActionTypes.LOGIN_ERROR})
-                console.log(error)
             }
-        );*/
-
+        );
     }
     return (
         <div className={styles.auth_page}>

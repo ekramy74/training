@@ -1,18 +1,48 @@
 import styles from './Home.module.css';
-import AwesomeSlider from 'react-awesome-slider';
 import 'react-awesome-slider/dist/styles.css';
 import {Carousel} from "antd";
 import main_banner from '../../Assets/images/main_banner.jpg';
 import secondBanner from '../../Assets/images/second_banner.jpg';
+import freeShipping from '../../Assets/images/freeshipping.png';
+import returnMoney from '../../Assets/images/moneyreturn.png';
+import discount from '../../Assets/images/discount.png';
+import {useEffect, useState} from "react";
+import UseGet from "../../Shared/API_Helper/Get";
 
 const Home = () => {
     const contentStyle = {
         height: '50vh',
-
         color: '#fff',
         textAlign: 'center',
         background: '#364d79',
     };
+    const [isActive, setIsActive] = useState(0);
+    const [newProducts,setNewProducts]=useState([]);
+
+
+    const getProducts = () => {
+        let requestOption = {
+            method: 'GET',
+        }
+        let apiURl = process.env.REACT_APP_BASE_API_URL
+        fetch(`${apiURl}/home`, requestOption).then(response => {
+            console.log(response)
+            return response.json()
+        }).then(result => {
+            const {most_ordered_products,new_5_products} =result;
+            setNewProducts(new_5_products);
+            console.log(result)
+        }).catch(
+            error => {
+                console.log(error)
+            }
+        )
+    }
+
+    useEffect(() => {
+        getProducts()
+    }, [])
+
     return (
         <>
             <div className={styles.home}>
@@ -101,97 +131,73 @@ const Home = () => {
                         Daily Deals
                     </h1>
                     <div className={styles.toggle}>
-                        <div className={styles.toggle_item} onClick={() => {
-
-                        }}>
+                        <div className={isActive === 0 ? styles.toggle_item + ' ' + styles.active : styles.toggle_item}
+                             onClick={() => {
+                                 setIsActive(0)
+                             }}>
                             <h3>
                                 New arrivals
                             </h3>
                         </div>
-                        <div className={styles.toggle_item}>
+                        <div className={isActive === 1 ? styles.toggle_item + ' ' + styles.active : styles.toggle_item}
+                             onClick={() => {
+                                 setIsActive(1)
+                             }}>
                             <h3>
                                 Best sellers
                             </h3>
                         </div>
                     </div>
                     <div className={styles.products}>
-                        <div className={styles.product}>
-                            <div className={styles.product_image}>
-                                <img src={main_banner
-                                } alt=""/>
-                                <div className={styles.tag}>
-                                    tags
+                        {newProducts.map((item,index)=>(
+                            <div className={styles.product}>
+                                <div className={styles.product_image}>
+                                    <img src={main_banner
+                                    } alt=""/>
+                                    <div className={styles.tag}>
+                                        tags
+                                    </div>
+                                </div>
+                                <div className={styles.product_desc}>
+                                    <h3>
+                                        {item.product_name}
+                                    </h3>
+                                    <p>
+                                        $ {item.new_price}
+                                    </p>
                                 </div>
                             </div>
-                            <div className={styles.product_desc}>
-                                <h3>
-                                    Product name
-                                </h3>
-                                <p>
-                                    $ 100
-                                </p>
-                            </div>
-                        </div>
-                        <div className={styles.product}>
-                            <div className={styles.product_image}>
-                                <img src={main_banner
-                                } alt=""/>
-                                <div className={styles.tag}>
-                                    tags
-                                </div>
-                            </div>
-                            <div className={styles.product_desc}>
-                                <h3>
-                                    Product name
-                                </h3>
-                                <p>
-                                    $ 100
-                                </p>
-                            </div>
-                        </div>
-                        <div className={styles.product}>
-                            <div className={styles.product_image}>
-                                <img src={main_banner
-                                } alt=""/>
-                                <div className={styles.tag}>
-                                    tags
-                                </div>
-                            </div>
-                            <div className={styles.product_desc}>
-                                <h3>
-                                    Product name
-                                </h3>
-                                <p>
-                                    $ 100
-                                </p>
-                            </div>
-                        </div>
+                        ))}
+
                     </div>
                 </section>
 
                 <section className={styles.service}>
                     <div className={styles.service_item}>
-                        <p>
+                        <img src={freeShipping} alt=""/>
+                        <h1>
                             Free shipping
-                        </p>
+                        </h1>
                         <p>
                             Free shipping on all orders
                         </p>
                     </div>
                     <div className={styles.service_item}>
+                        <img src={returnMoney} alt=""/>
+                        <h1>
+                            Money return
+                        </h1>
                         <p>
-                            Free shipping
-                        </p>
-                        <p>
-                            Free shipping on all orders
+                            Back guarantee under 7 days
                         </p>
                     </div>
                     <div className={styles.service_item}>
+                        <img src={discount} alt=""/>
+                        <h1>
+                            Discounts and offers
+                        </h1>
                         <p>
-                            Free shipping
-                        </p>
-                        <p>
-                            Free shipping on all orders
+                            New discounts and offers every week
                         </p>
                     </div>
                 </section>

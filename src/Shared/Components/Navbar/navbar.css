@@ -10,6 +10,8 @@
     padding: 10px 20px;
     border-bottom: 1px solid #ccc;
     z-index: 1000;
+    position: fixed;
+    top: 0;
 }
 
 .scrolled {
@@ -36,6 +38,7 @@
     font-weight: 600;
     padding: 0 1rem;
     transition: all .3s ease-in;
+    position: relative;
 }
 
 .links ul {
@@ -45,13 +48,23 @@
     padding: 0;
 }
 
-.navbar a:hover :after {
+a:after {
     content: '';
-    display: block;
+    position: absolute;
     width: 100%;
+    transform: scaleX(0);
     height: 2px;
-    background-color: #000;
-    margin-top: 5px;
+    bottom: 0;
+    margin-top: 3px;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+a:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 .transparentBtn {
@@ -67,4 +80,89 @@
 .transparentBtn:hover {
     background-color: #282c34;
     color: #fff;
+}
+
+.hamburger-menu, .close-menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 5rem;
+        width: 100%;
+    }
+
+    .hamburger-menu {
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .close-menu {
+        display: none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    .transparentBtn {
+        display: none;
+    }
+
+    .links ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #fff;
+        position: absolute;
+        top: 5rem;
+        right: 0;
+        width: 0;
+        height: calc(100vh - 7rem);
+        transition: all .3s ease-in-out;
+    }
+
+
+    .links ul li {
+        display: none;
+        transition: all .3s ease-in-out;
+    }
+
+    .links-open ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #fff;
+        position: absolute;
+        top: 4rem;
+        right: 0;
+        width: 100%;
+        height: calc(100vh - 7rem);
+        transition: all .3s ease-in-out;
+        z-index: 1000;
+
+    }
+
+
+    .navbar {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .navbar a {
+        padding: 10px 0;
+    }
+
+    .navbar a:hover :after {
+        content: none;
+    }
+
+    .logo {
+        width: 10%;
+        height: 80%;
+    }
+
 }

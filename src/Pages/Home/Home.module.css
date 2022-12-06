@@ -14,7 +14,7 @@
 .types {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 50px;
+    margin: 50px 0;
     height: 10rem;
 }
 
@@ -71,9 +71,15 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
+    color: #777676;
+}
+
+.toggle_item:hover {
+    color: #A2BAC4;
 }
 
 .active {
+    font-size: 1.2rem;
     color: #F9A826;
 }
 
@@ -143,12 +149,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 50%;
+    height: 40%;
     width: 30%;
     color: #fff;
     margin: 0 20px;
     border-radius: 10px;
-
+    position: relative;
 }
 
 .service_item:nth-child(1) {
@@ -161,4 +167,139 @@
 
 .service_item:nth-child(3) {
     background-color: #23c700;
+}
+
+.service_item h1 {
+    font-family: Yellowtail, 'cursive';
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.service_item p {
+    margin-top: 0;
+    font-family: Lato, 'sans-serif';
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.service_item img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    filter: grayscale(100%);
+    rotate: -20deg;
+    mix-blend-mode: overlay;
+}
+
+.service_item img:hover {
+    animation: horizontal-shaking 0.5s ease-in-out;
+}
+
+
+@keyframes horizontal-shaking {
+    0% {
+        transform: scale(1.03) translateX(0)
+    }
+    25% {
+        transform: scale(1.05) translateX(5px)
+    }
+    50% {
+        transform: scale(1.02) translateX(-5px)
+    }
+    75% {
+        transform: scale(1) translateX(5px)
+    }
+    100% {
+        transform: translateX(0)
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .service_item {
+        width: 100%;
+        margin: 0;
+    }
+
+    .service_item img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .service_item h1 {
+        font-size: 1.5rem;
+    }
+
+    .service_item p {
+        font-size: 0.8rem;
+    }
+
+    .products {
+        flex-direction: column;
+    }
+
+    .product {
+        width: 50%;
+    }
+
+    .product_image {
+        width: 100%;
+        height: 100%;
+    }
+
+    .product_image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .service {
+        flex-direction: column;
+        width: auto;
+        margin: 20px;
+        background-image: none;
+    }
+
+    .types {
+        flex-direction: column;
+        height: 20rem;
+    }
+
+    .featured {
+        width: 100%;
+        height: 50%;
+    }
+
+    .newest {
+        width: 100%;
+        height: 50%;
+    }
+
+    .banner_desc {
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .banner_desc h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .banner_desc p {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .banner {
+        margin-bottom: 0;
+    }
+
+    .home {
+        flex-direction: column;
+    }
+
+    .service_item {
+        margin-bottom: 10px;
+    }
 }

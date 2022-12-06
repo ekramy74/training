@@ -1,43 +1,40 @@
 import './navbar.css'
-import {Link} from "react-router-dom";
-import {useEffect, useRef} from "react";
-import {Button} from "antd";
+import {Link, useNavigate} from "react-router-dom";
+import { useState} from "react";
+import {MenuOutlined} from "@ant-design/icons";
 
 export const Navbar = () => {
-    const navRef = useRef(null);
-    useEffect(() => {
-            const nav = navRef.current;
-            const handleScroll = () => {
-                if (window.scrollY > 0) {
-                    nav.classList.add('scrolled');
-                } else {
-                    nav.classList.remove('scrolled');
-                }
-            };
-            window.addEventListener('scroll', handleScroll);
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            };
-        }
-        , []);
+
+    const [show, setShow] = useState(false);
+    const navigate = useNavigate();
+
     return (
-        <div className={'navbar'} ref={navRef}>
+        <div className={'navbar'}>
             <div className={'logo'}/>
-            <div className={'links'}>
+            <div className={show ? 'links-open' : 'links'}>
                 <ul>
                     <li>
                         <Link to={'/'}>Home</Link>
                     </li>
                     <li>
-                        <Link to={'/about'}>About</Link>
+                        <Link to={'/products'}>Products</Link>
                     </li>
                     <li>
-                        <Link to={'/contact'}>Contact</Link>
+                        <Link to={'/bag'}>Bag</Link>
                     </li>
                 </ul>
             </div>
             <div>
-                <button className={'transparentBtn'}>Get started</button>
+                <div className={'hamburger-menu'}
+                     onClick={() => {
+                         setShow(!show)
+                     }}
+                >
+                    <MenuOutlined/>
+                </div>
+                <button className={'transparentBtn'} onClick={()=>{
+                    navigate('/login')
+                }}>Get started</button>
             </div>
         </div>
     );
